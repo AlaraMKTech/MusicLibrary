@@ -81,7 +81,6 @@ const printPlaylist = function(playlistId) {
 
 printPlaylist('p01');
 
-
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function(trackId, playlistId) {
 
@@ -97,8 +96,21 @@ const generateUid = function() {
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
-
-}
+       let tracksObject = library.tracks;
+       let trackId = "t" + generateUid();
+       const allTrackIds = Object.keys(tracksObject);
+       if (allTrackIds.includes(trackId)) {
+           console.log("This track already exists.");
+       } else {
+           tracksObject[trackId] = {
+               id: trackId,
+               name: name,
+               artist: artist,
+               album: album,
+           };
+           console.log(`Track ${trackId} added to library.`);
+       }
+};
 
 
 // adds a playlist to the library
