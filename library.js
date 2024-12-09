@@ -83,8 +83,21 @@ printPlaylist('p01');
 
 // adds an existing track to an existing playlist
 const addTrackToPlaylist = function(trackId, playlistId) {
-
-}
+       if (library.tracks[trackId] && library.playlists[playlistId]) {
+         const playlist = library.playlists[playlistId];
+         if (!playlist.tracks.includes(trackId)) {
+           playlist.tracks.push(trackId);
+           console.log(`Track ${trackId} added to playlist ${playlistId}.`);
+         } else {
+           console.log(`Track ${trackId} already exists in playlist ${playlistId}.`);
+         }
+       } else {
+         console.log("Track or playlist not found.");
+       }
+};
+     
+     
+addTrackToPlaylist('t03', 'p01');
 
 
 // generates a unique id
@@ -111,6 +124,15 @@ const addTrack = function(name, artist, album) {
            console.log(`Track ${trackId} added to library.`);
        }
 };
+
+// Test Cases
+addTrack("Cody the Corgi", "Cody", "Dog Music");
+addTrack("Coding Lowfi", "Aoife", "Coding Lowfi Classics");
+
+console.log(library.tracks);
+
+
+
 
 
 // adds a playlist to the library
