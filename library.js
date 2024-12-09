@@ -77,7 +77,7 @@ const printPlaylist = function(playlistId) {
        } else {
          console.log("Playlist not found.");
        }
-     };
+};
 
 printPlaylist('p01');
 
@@ -95,8 +95,7 @@ const addTrackToPlaylist = function(trackId, playlistId) {
          console.log("Track or playlist not found.");
        }
 };
-     
-     
+ 
 addTrackToPlaylist('t03', 'p01');
 
 
@@ -105,7 +104,6 @@ addTrackToPlaylist('t03', 'p01');
 const generateUid = function() {
   return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 }
-
 
 // adds a track to the library
 const addTrack = function(name, artist, album) {
@@ -131,14 +129,23 @@ addTrack("Coding Lowfi", "Aoife", "Coding Lowfi Classics");
 
 console.log(library.tracks);
 
-
-
-
-
-// adds a playlist to the library
-const addPlaylist = function(name) {
-
-}
+// adds playlist to the library
+const addPlaylist = function(name) { 
+       let newPlaylist = "p" + generateUid();
+       library.playlists[newPlaylist] = {
+         id: newPlaylist,
+         name: name,
+         tracks: [] 
+       };
+     
+       console.log(`Playlist "${name}" added to the library.`);
+     };
+     
+// Test Cases
+addPlaylist("Music for Dogs");
+addPlaylist("Music for Cats");
+     
+console.log(library.playlists); 
 
 
 // STRETCH:
